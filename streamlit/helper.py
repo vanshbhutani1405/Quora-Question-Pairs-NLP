@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 
 
-# ---------------- PATH SETUP ----------------
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TFIDF_PATH = os.path.join(BASE_DIR, "tfidf.pkl")
@@ -20,11 +20,11 @@ SCALER_PATH = os.path.join(BASE_DIR, "scaler.pkl")
 scaler = pickle.load(open(SCALER_PATH, "rb"))
 
 
-# ---------------- LOAD ARTIFACTS ----------------
+
 tfidf = pickle.load(open(TFIDF_PATH, "rb"))
 STOP_WORDS = ENGLISH_STOP_WORDS
 
-# ---------------- BASIC FEATURES ----------------
+
 def test_common_words(q1, q2):
     w1 = set(q1.split())
     w2 = set(q2.split())
@@ -37,7 +37,7 @@ def test_total_words(q1, q2):
     return len(w1) + len(w2)
 
 
-# ---------------- TOKEN FEATURES ----------------
+
 def test_fetch_token_features(q1, q2):
     SAFE_DIV = 0.0001
     token_features = [0.0] * 8
@@ -70,7 +70,7 @@ def test_fetch_token_features(q1, q2):
     return token_features
 
 
-# ---------------- LENGTH FEATURES ----------------
+
 def test_fetch_length_features(q1, q2):
     length_features = [0.0] * 3
     q1_tokens = q1.split()
@@ -88,7 +88,6 @@ def test_fetch_length_features(q1, q2):
     return length_features
 
 
-# ---------------- FUZZY FEATURES ----------------
 def test_fetch_fuzzy_features(q1, q2):
     return [
         fuzz.QRatio(q1, q2),
@@ -98,7 +97,7 @@ def test_fetch_fuzzy_features(q1, q2):
     ]
 
 
-# ---------------- PREPROCESSING ----------------
+
 def preprocess(q):
     
     q = str(q).lower().strip()
@@ -269,12 +268,12 @@ def preprocess(q):
     
 
 
-# ---------------- QUERY CREATOR ----------------
+
 def query_point_creator(q1, q2):
     q1 = preprocess(q1)
     q2 = preprocess(q2)
 
-    # -------- NUMERIC FEATURES --------
+   
     num_features = []
 
     num_features.extend([

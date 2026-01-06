@@ -1,0 +1,8 @@
+streamlit
+numpy
+scikit-learn
+xgboost
+fuzzywuzzy
+python-Levenshtein
+distance
+beautifulsoup4
